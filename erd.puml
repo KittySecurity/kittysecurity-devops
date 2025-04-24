@@ -1,0 +1,45 @@
+@startuml
+entity Role {
+    +user_id : UUID
+    role : String
+}
+
+entity User {
+    +user_id : UUID
+    username : String
+    email : String
+    password_hash : String
+    created_at : DateTime
+    active : Boolean
+}
+
+entity PasswordEntry {
+    +entry_id : UUID
+    user_id : UUID
+    service_name : String
+    url : String
+    login : String
+    password_encrypted : String
+    created_at : DateTime
+    updated_at : DateTime
+}
+
+entity AuditLog {
+    +log_id : UUID
+    user_id : UUID
+    action : String
+    timestamp : DateTime
+    ip_address : String
+}
+
+entity Keys {
+    +key_id : UUID
+    user_id : UUID
+    pubKey : String
+}
+
+User ||--o{ Keys : "has"
+User ||--|| Role : "is"
+User ||--o{ PasswordEntry : "owns"
+User ||--o{ AuditLog : "triggers"
+@enduml
