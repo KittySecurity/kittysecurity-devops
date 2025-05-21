@@ -1,27 +1,29 @@
 @startuml
 entity Role {
-    +user_id : UUID
+    +user_id : Long
+    role_id : Long
     role : String
 }
 
 entity User {
-    +user_id : UUID
+    +user_id : Long
     username : String
     email : String
-    password_hash : String
-    created_at : DateTime
-    active : Boolean
+    master_hash : String
+    created_at : Instant
+    updated_at : Instant
+    isEnabled : Boolean
 }
 
 entity PasswordEntry {
-    +entry_id : UUID
-    user_id : UUID
+    +entry_id : Long
+    user_id : Long
     service_name : String
     url : String
     login : String
     password_encrypted : String
-    created_at : DateTime
-    updated_at : DateTime
+    created_at : Instant
+    updated_at : Instant
 }
 
 entity AuditLog {
@@ -32,13 +34,15 @@ entity AuditLog {
     ip_address : String
 }
 
-entity Keys {
-    +key_id : UUID
-    user_id : UUID
-    pubKey : String
+entity RefreshToken {
+    +key_id : Long
+    prefix : String
+    hashedToken : String
+    expiresAt : Instant
+    createdAt : Instant
 }
 
-User ||--o{ Keys : "has"
+User ||--o{ RefreshToken : "has"
 User ||--|| Role : "is"
 User ||--o{ PasswordEntry : "owns"
 User ||--o{ AuditLog : "triggers"
