@@ -42,8 +42,20 @@ entity RefreshToken {
     createdAt : Instant
 }
 
+entity PasswordGenSettings {
+    +user_id : Long
+    length : INT
+    minNumOfSpecChars : INT
+    minNumOfDigits : INT
+    hasLowercase : Boolean
+    hasUppercase : Boolean
+    hasSpecial : Boolean
+    hasDigits : Boolean
+}
+
 User ||--o{ RefreshToken : "has"
 User ||--|| Role : "is"
 User ||--o{ PasswordEntry : "owns"
 User ||--o{ AuditLog : "triggers"
+User ||--|| PasswordGenSettings : "configured by"
 @enduml
