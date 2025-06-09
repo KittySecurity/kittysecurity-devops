@@ -30,9 +30,7 @@ services:
       retries: 3
 
   backend:
-    build:
-      context:  KittySecurity\kittysecurity-backend
-      dockerfile: Dockerfile
+    image:  ghcr.io/kittysecurity/kittysecuritybackend:latest
     ports:
       - 8080:$APP_PORT
     environment:
@@ -45,9 +43,7 @@ services:
     restart: on-failure
 
   frontend:
-    build:
-      context: KittySecurity\kittysecurity-frontend\KittySecurity
-      dockerfile: Dockerfile
+    image: ghcr.io/kittysecurity/kittysecurityfrontend:latest
     ports:
       - "3000:3000"
     networks:
