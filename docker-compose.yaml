@@ -30,7 +30,7 @@ services:
       retries: 3
 
   backend:
-    image:  ghcr.io/kittysecurity/kittysecuritybackend:latest
+    image: ghcr.io/kittysecurity/kittysecuritybackend:latest
     ports:
       - 8080:$APP_PORT
     environment:
@@ -43,6 +43,7 @@ services:
     restart: on-failure
 
   frontend:
+    image: ghcr.io/kittysecurity/kittysecurityfrontend:latest
     image: ghcr.io/kittysecurity/kittysecurityfrontend:latest
     ports:
       - "3000:3000"
