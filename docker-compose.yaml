@@ -44,7 +44,6 @@ services:
 
   frontend:
     image: ghcr.io/kittysecurity/kittysecurityfrontend:latest
-    image: ghcr.io/kittysecurity/kittysecurityfrontend:latest
     ports:
       - "3000:3000"
     networks:
